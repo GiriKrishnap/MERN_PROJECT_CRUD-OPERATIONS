@@ -93,8 +93,10 @@ body {
     display: block;
     text-decoration: none;
     color: #757575;
+    cursor: pointer;
 }
 
 .login-aTag:hover{
     text-decoration: underline #3DFF3F;
+    color: white;
 }

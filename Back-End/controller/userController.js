@@ -22,13 +22,15 @@ module.exports = {
                     phone: req.body.phoneNumber,
                     password: securePassword
                 })
-                res.json({ status: 'ok', _id: userCreate._id, name: userCreate.userName })
+
+                res.json({ status: 'ok' })
+
             }
         } catch (error) {
             console.log(error)
         }
     }
     //////////////////////////////
-    
+
 
 }
