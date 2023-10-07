@@ -49,11 +49,11 @@ function Signup() {
             try {
                 let response = await axios.post(signupPost, body, { headers: { "Content-Type": "application/json" } });
 
-                if (response.data.status === 'ok') {
+                if (response.data.status === true) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Your Signup is Success 😎',
+                        title: response.data.message,
                         showConfirmButton: false,
                         timer: 1500
                     }).then(() => navigate('/'));
@@ -61,7 +61,7 @@ function Signup() {
                     Swal.fire({
                         position: 'center',
                         icon: 'error',
-                        title: 'you are Already a Member 🥰',
+                        title: response.data.message,
                         showConfirmButton: false,
                         timer: 1400
                     })
@@ -73,7 +73,7 @@ function Signup() {
         }
     }
 
-
+    /////////////////
     return (
 
         <div className="main-div container-fluid col-12">

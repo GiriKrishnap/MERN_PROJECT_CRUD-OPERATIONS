@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+
 import './Home.css'
 
 
 function Login() {
 
+    
 
     return (
         <div className="main-div-home container-fluid col-12">
@@ -21,6 +23,7 @@ function Login() {
 
 
             <hr className='line mt-5' />
+            <button type="submit" className='logout-button-home mt-4'>Logout<i class="fa-solid m-1 fa-square-arrow-up-right"></i></button>
         </div>
     )
 }
