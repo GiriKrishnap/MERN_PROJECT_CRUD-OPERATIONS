@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../../util/axios';
 import Swal from 'sweetalert2';
 import { signupPost } from '../../../util/constants';
-
+import { motion } from "framer-motion"
 
 function Signup() {
 
@@ -76,7 +76,15 @@ function Signup() {
     /////////////////
     return (
 
-        <div className="main-div container-fluid col-12">
+        <motion.div
+            className='main-div container-fluid col-12'
+            initial={{ opacity: 0, scale: 0.2, y: 200, borderRadius: "20%", rotate: -20 }}
+            animate={{ opacity: 1, scale: 0.95, y: 0, borderRadius: "3%", rotate: 0 }}
+            whileHover={{ scale: 1 }}
+            transition={{
+                duration: 0.3,
+            }}>
+
             <div className="col-12">
                 <img src="../assets/images/RoundLogo.png" alt="img" id='rotating-image' className='round-logo-login mb-2'
                     style={{
@@ -85,29 +93,70 @@ function Signup() {
                 <h3 className='d-inline m-2 text-white'>Giri</h3>
             </div>
             <hr className='line' />
-            <h4 className='mt-4 text-white'>SIGN UP</h4>
+            <h4 className='mt-3 text-white'>SIGN UP</h4>
 
             <form action="" onSubmit={(e) => handleSubmit(e)}>
-                <input type="text" id='rotation-input' className="signup-input" placeholder='Full Name'
-                    autoComplete='off'
-                    value={userName}
-                    onChange={e => { handleInputChange(); setUserName(e.target.value) }}
-                /> <br />
-                <input type="email" id='rotation-input' className="signup-input" placeholder='Email'
-                    value={email}
-                    onChange={e => { handleInputChange(); setEmail(e.target.value) }} />
-                <input type="number" id='rotation-input' className="signup-input" placeholder='Phone'
-                    value={phone}
-                    onChange={e => { handleInputChange(); setPhone(e.target.value) }} />
-                <input type="password" name="" className="signup-input" id='pass-input rotation-input' placeholder='Password'
-                    value={password}
-                    onChange={e => { handleInputChange(); setPassword(e.target.value) }} /><br />
-                <button type="submit" className='submit-button mb-3 mt-4'>SIGN UP</button> <br />
-                <Link to='/'> <p className='login-aTag d-inline'>You Have Account?</p> </Link>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0, y: 20, rotate: -20, width: 530 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotate: 0, }}
+                    transition={{
+                        duration: 0.3, delay: 0.1
+                    }}>
+                    <input type="text" id='rotation-input' className="signup-input" placeholder='First Name'
+                        autoComplete='off' required
+                        value={userName} name='username'
+                        onChange={e => { handleInputChange(); setUserName(e.target.value) }}
+                    /></motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0, y: 50, rotate: -20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotate: 0, }}
+                    transition={{
+                        duration: 0.3, delay: 0.2
+                    }}>
+                    <input type="email" id='rotation-input' className="signup-input" placeholder='Email'
+                        value={email} name='email' required
+                        onChange={e => { handleInputChange(); setEmail(e.target.value) }} />
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0, y: 50, rotate: -20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotate: 0, }}
+                    transition={{
+                        duration: 0.3, delay: 0.3, ease: 'linear'
+                    }}>
+                    <input type="number" id='rotation-input' className="signup-input" placeholder='Phone'
+                        value={phone} name='phone' required
+                        onChange={e => { handleInputChange(); setPhone(e.target.value) }} />
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0, y: 50, rotate: -20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotate: 0, }}
+                    transition={{
+                        duration: 0.3, delay: 0.4
+                    }}>
+                    <input type="password" name="password" className="signup-input" id='pass-input rotation-input' placeholder='Password'
+                        value={password} required
+                        onChange={e => { handleInputChange(); setPassword(e.target.value) }} /><br />
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0, y: 30, rotate: -20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0, rotate: 0, }}
+                    transition={{
+                        duration: 0.2, delay: 0.5
+                    }}>
+
+                    <button type="submit" className='submit-button mb-3 mt-4'>SIGN UP</button> <br />
+                    <Link to='/'> <p className='login-aTag d-inline'>You Have Account?</p> </Link>
+
+                </motion.div>
             </form>
 
-            <hr className='line mt-1' />
-        </div>
+            <hr className='line mt-3' />
+
+        </motion.div>
     )
 }
 
