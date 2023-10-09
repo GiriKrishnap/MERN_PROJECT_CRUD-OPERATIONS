@@ -47,3 +47,14 @@
     background-color: #636363;
     color: #C204C0;
 }
+
+.round-logo-home {
+    width: 75px;
+    height: 75px;
+    border-radius: 45px;
+}
+
+.round-logo-home:hover {
+    margin-right: 10px;
+    filter: invert();
+}

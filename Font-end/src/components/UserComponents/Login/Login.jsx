@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../../util/axios';
@@ -53,6 +53,14 @@ function Login() {
         }
 
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            navigate('/home');
+        }
+    },[])
 
 
     const handleInputChange = (e) => {
