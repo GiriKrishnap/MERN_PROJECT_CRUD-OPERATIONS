@@ -1,9 +1,7 @@
-const express = require('express');
 const UserModel = require('../model/userModel');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const bcrypt = require('bcrypt');
-const fs = require('fs');
 
 
 module.exports = {
@@ -30,6 +28,7 @@ module.exports = {
             console.log(error)
         }
     },
+
     ///////////////////////
     userLogin: async (req, res) => {
         try {
@@ -56,6 +55,7 @@ module.exports = {
             console.log(error)
         }
     },
+
     ////////////////////////////////
     verifyToken: async (req, res) => {
         try {
@@ -75,6 +75,7 @@ module.exports = {
             console.log(error + " verify Catch error")
         }
     },
+    
     //////////////////////
     userImageUpdate: async (req, res) => {
         try {

@@ -58,3 +58,7 @@
     margin-right: 10px;
     filter: invert();
 }
+
+.userName {
+    text-transform: uppercase;
+}

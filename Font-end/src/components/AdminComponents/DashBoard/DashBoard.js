@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './Home.css'
+import './DashBoard.css'
 import { motion } from "framer-motion"
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../../util/axios';
@@ -10,51 +10,7 @@ import { changeImage } from '../../../Redux/userImageReducer';
 import { verifyUserToken } from '../../../util/constants';
 
 
-function Home() {
-
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const handleLogout = (e) => {
-        e.preventDefault();
-        Swal.fire({
-            title: 'Logout?',
-            text: "Do you want to Logout?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Logout'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                localStorage.clear();
-                dispatch({ type: 'logout' })
-                navigate('/');
-            }
-        })
-    }
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-
-        if (!token) {
-            navigate('/');
-        } else {
-            const body = JSON.stringify({ token });
-            console.log(verifyUserToken + " 🚀🚀🚀🚀verifyUserToken")
-            console.log("🚀🚀body" + body)
-
-            axios.post(verifyUserToken, body, { headers: { "Content-Type": "application/json" } }).then((res) => {
-                console.log("🚀🚀🚀 res  -  " + res.data.userCheck)
-                dispatch(change(res.data.userCheck.userName))
-                dispatch(changeImage(res.data.userCheck.image));
-            })
-        }
-    }, [navigate, dispatch])
-
-    const userName = useSelector((state) => state.username);
-    const userImage = useSelector((state) => {
-        return state.userImage
-    })
+function Dashboard() {
 
     return (
         <motion.div
@@ -67,9 +23,9 @@ function Home() {
             }}>
 
             <div className="col-12">
-                <img src={userImage} alt="img" id='rotating-image' className='round-logo-login mb-2'
+                <img src={"../assets/images/RoundLogo.png"} alt="img" id='rotating-image' className='round-logo-login mb-2'
                 />
-                <h4 className='d-inline m-2 text-white'>Home Page</h4>
+                <h4 className='d-inline m-2 text-white'>Dashboard Page</h4>
             </div>
 
             <hr className='line' />
@@ -80,18 +36,38 @@ function Home() {
                 transition={{
                     duration: 0.3, delay: 0.2, ease: 'linear',
                 }}
-                className='mt-4 text-white userName'>HELLO {userName} 🤗</motion.h1>
-
+                className='mt-4 text-white'>Here to Assist, Admin 🐱‍👤</motion.h1>
 
             <motion.div
                 initial={{ opacity: 0, scale: 0, y: 60, rotate: -20 }}
-                animate={{ opacity: 1, scale: 1, y: 0, rotate: 0, width: 400 }}
+                animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
                 transition={{
                     duration: 0.3, delay: 0.26, ease: 'linear'
                 }}>
 
-                <Link to='/profile'>
-                    <button type="submit" className='submit-button-home mt-4'>Go To Profile
+                <div className='row rounded m-0 '>
+                    <div className='col-6 bg-info text-white '>
+                        <i className="fa-solid fa-users fa-2xl m-4 mt-5" style={{ color: '#ffffff' }}></i>
+                        <p>Users</p>
+                    </div>
+                    <div className="col-6 bg-white text-center ">
+                        <h1 className='mt-4 font-weight-bold'>34 <i class="fa-solid fa-chart-simple"></i></h1>
+
+                    </div>
+                </div>
+
+            </motion.div>
+
+
+            <motion.div
+                initial={{ opacity: 0, scale: 0, y: 60, rotate: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+                transition={{
+                    duration: 0.3, delay: 0.26, ease: 'linear'
+                }}>
+
+                <Link to='/admin/users'>
+                    <button type="submit" className='submit-button-home mt-4'>Go UserList
                         <i className="fa-solid fa-user m-1"></i>
                     </button>
                 </Link>
@@ -102,14 +78,14 @@ function Home() {
 
             <motion.div
                 initial={{ opacity: 0, scale: 0, y: 60, rotate: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0, rotate: 0, width: 400 }}
+                animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
                 transition={{
                     duration: 0.3, delay: 0.29, ease: 'linear'
                 }}>
 
 
                 <button type="submit" className='logout-button-home mt-2'
-                    onClick={handleLogout}>
+                    onClick={""}>
                     Logout
                     <i className="fa-solid m-1 fa-square-arrow-up-right"></i>
                 </button>
@@ -120,4 +96,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Dashboard

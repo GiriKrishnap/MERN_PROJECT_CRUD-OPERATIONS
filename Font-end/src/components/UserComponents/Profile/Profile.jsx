@@ -101,7 +101,7 @@ function Profile() {
             }}>
 
             <div className="col-12 mb-2">
-                <img src={image} alt="img" className='round-logo-home mb-2' />
+                <img src="../assets/images/RoundLogo.png" alt="img" className='round-logo-login mb-2' />
                 <h4 className='d-inline m-2 text-white'>Profile Page</h4>
             </div>
 
